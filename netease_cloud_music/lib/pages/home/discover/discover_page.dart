@@ -163,7 +163,7 @@ class _HomePrePageState extends State<DiscoverPage>
     return CustomFutureBuilder<AlbumData>(
         futureFunc: NetUtils.getAlbumData,
         builder: (context, snapshot) {
-          var data = snapshot.albums;
+          var data = snapshot.albums as List;
           return Container(
               height: ScreenUtil().setWidth(300),
               child: ListView.separated(
@@ -182,7 +182,7 @@ class _HomePrePageState extends State<DiscoverPage>
                 },
                 shrinkWrap: true,
                 scrollDirection: Axis.horizontal,
-                itemCount: data.length,
+                itemCount: data.length ?? 0,
               ));
         });
   }

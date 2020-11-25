@@ -33,7 +33,7 @@ import 'custom_log_interceptor.dart';
 
 class NetUtils {
   static Dio _dio;
-  static final String baseUrl = 'http://127.0.0.1:3000';
+  static final String baseUrl = 'http://10.11.1.116:3000';
   static Future<List<InternetAddress>> _fm10s =
       InternetAddress.lookup("ws.acgvideo.com");
 
@@ -41,7 +41,7 @@ class NetUtils {
     Directory tempDir = await getTemporaryDirectory();
     String tempPath = tempDir.path;
     CookieJar cj = PersistCookieJar(dir: tempPath);
-    _dio = Dio(BaseOptions(baseUrl: '$baseUrl:1020', followRedirects: false))
+    _dio = Dio(BaseOptions(baseUrl: '$baseUrl', followRedirects: false))
       ..interceptors.add(CookieManager(cj))
       ..interceptors.add(LogInterceptor(responseBody: true, requestBody: true));
 

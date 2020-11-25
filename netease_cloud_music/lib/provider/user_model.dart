@@ -23,7 +23,6 @@ class UserModel with ChangeNotifier {
 
   /// 登录
   Future<User> login(BuildContext context, String phone, String pwd) async {
-
     User user = await NetUtils.login(context, phone, pwd);
     if (user.code > 299) {
       Utils.showToast(user.msg ?? '登录失败，请检查账号密码');
