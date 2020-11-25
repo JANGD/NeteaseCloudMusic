@@ -4,8 +4,8 @@ import 'package:get_it/get_it.dart';
 import 'package:netease_cloud_music/route/navigate_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class Application{
-  static Router router;
+class Application {
+  static FluroRouter router;
   static GlobalKey<NavigatorState> key = GlobalKey();
   static SharedPreferences sp;
   static double screenWidth;
@@ -14,12 +14,11 @@ class Application{
   static double bottomBarHeight;
   static GetIt getIt = GetIt.instance;
 
-  static initSp() async{
+  static initSp() async {
     sp = await SharedPreferences.getInstance();
   }
 
-  static setupLocator(){
+  static setupLocator() {
     getIt.registerSingleton(NavigateService());
   }
-
 }

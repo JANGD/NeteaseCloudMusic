@@ -44,7 +44,8 @@ class _CommentPageState extends State<CommentPage> {
   }
 
   void _request() async {
-    var r = await NetUtils.getCommentData(context, widget.commentHead.type, params: params);
+    var r = await NetUtils.getCommentData(context, widget.commentHead.type,
+        params: params);
     setState(() {
       if (r.hotComments != null && r.hotComments.isNotEmpty) {
         commentData.add(Comments(isTitle: true, title: "精彩评论"));
@@ -68,7 +69,7 @@ class _CommentPageState extends State<CommentPage> {
         body: Stack(
           children: <Widget>[
             Listener(
-              onPointerDown: (d){
+              onPointerDown: (d) {
                 FocusScope.of(context).requestFocus(_blankNode);
               },
               child: EasyRefresh(
@@ -121,17 +122,23 @@ class _CommentPageState extends State<CommentPage> {
               ),
             ),
             Align(
-              child: CommentInputWidget((content){
+              child: CommentInputWidget((content) {
                 // 提交评论
                 NetUtils.sendComment(context, params: {
                   't': 1,
                   'type': widget.commentHead.type,
                   'id': widget.commentHead.id,
                   'content': content
-                }).then((r){
+                }).then((r) {
                   Utils.showToast('评论成功！');
                   setState(() {
-                    commentData.insert(commentData.map((c) => c.title).toList().indexOf('最新评论')+1, r.comment);
+                    commentData.insert(
+                        commentData
+                                .map((c) => c.title)
+                                .toList()
+                                .indexOf('最新评论') +
+                            1,
+                        r.comment);
                   });
                 });
               }),
@@ -184,8 +191,7 @@ class _CommentPageState extends State<CommentPage> {
               ),
               VEmptyView(5),
               Text(
-                DateUtil.getDateStrByMs(data.time,
-                    format: DateFormat.YEAR_MONTH_DAY),
+                DateUtil.getDateTimeByMs(data.time).toIso8601String(),
                 style: smallGrayTextStyle,
               ),
               VEmptyView(20),

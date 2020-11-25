@@ -33,7 +33,7 @@ import 'custom_log_interceptor.dart';
 
 class NetUtils {
   static Dio _dio;
-  static final String baseUrl = 'http://118.24.63.15';
+  static final String baseUrl = 'http://127.0.0.1:3000';
   static Future<List<InternetAddress>> _fm10s =
       InternetAddress.lookup("ws.acgvideo.com");
 
@@ -43,9 +43,8 @@ class NetUtils {
     CookieJar cj = PersistCookieJar(dir: tempPath);
     _dio = Dio(BaseOptions(baseUrl: '$baseUrl:1020', followRedirects: false))
       ..interceptors.add(CookieManager(cj))
-      ..interceptors
-          .add(LogInterceptor(responseBody: true, requestBody: true));
-    
+      ..interceptors.add(LogInterceptor(responseBody: true, requestBody: true));
+
     // 海外華人可使用 nondanee/UnblockNeteaseMusic
     (_dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
         (client) {
@@ -314,20 +313,20 @@ class NetUtils {
 
   /// 综合搜索
   static Future<SearchMultipleData> searchMultiple(
-      BuildContext context, {
-        @required Map<String, dynamic> params,
-      }) async {
-    var response = await _get(context, '/search',
-        params: params, isShowLoading: false);
+    BuildContext context, {
+    @required Map<String, dynamic> params,
+  }) async {
+    var response =
+        await _get(context, '/search', params: params, isShowLoading: false);
     return SearchMultipleData.fromJson(response.data);
   }
 
   /// 获取动态数据
   static Future<prefix0.EventData> getEventData({
-        @required Map<String, dynamic> params,
-      }) async {
-    var response = await _get(null, '/event',
-        params: params, isShowLoading: false);
+    @required Map<String, dynamic> params,
+  }) async {
+    var response =
+        await _get(null, '/event', params: params, isShowLoading: false);
     return prefix0.EventData.fromJson(response.data);
   }
 
@@ -345,13 +344,11 @@ class NetUtils {
 
   /// 获取用户信息
   static Future<UserDetailData> getUserInfo(
-    BuildContext context,{
-        @required Map<String, dynamic> params,
-      }) async {
-    var response = await _get(null, '/user/detail',
-        params: params, isShowLoading: false);
+    BuildContext context, {
+    @required Map<String, dynamic> params,
+  }) async {
+    var response =
+        await _get(null, '/user/detail', params: params, isShowLoading: false);
     return UserDetailData.fromJson(response.data);
   }
-
 }
-

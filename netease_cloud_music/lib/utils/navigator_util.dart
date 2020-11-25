@@ -11,6 +11,7 @@ import 'package:netease_cloud_music/route/transparent_route.dart';
 import 'package:netease_cloud_music/utils/fluro_convert_utils.dart';
 
 import '../application.dart';
+import '../application.dart';
 
 class NavigatorUtil {
   static _navigateTo(BuildContext context, String path,
@@ -77,7 +78,9 @@ class NavigatorUtil {
 //    _navigateTo(context, '${Routes.lookImg}');
     Navigator.push(
       context,
-        TransparentRoute(builder: (_) => LookImgPage(imgs, index),),
+      TransparentRoute(
+        builder: (_) => LookImgPage(imgs, index),
+      ),
     );
   }
 
@@ -85,5 +88,4 @@ class NavigatorUtil {
   static void goUserDetailPage(BuildContext context, int userId) {
     _navigateTo(context, "${Routes.userDetail}?id=$userId");
   }
-
 }
