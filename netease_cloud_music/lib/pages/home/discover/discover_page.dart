@@ -163,7 +163,10 @@ class _HomePrePageState extends State<DiscoverPage>
     return CustomFutureBuilder<AlbumData>(
         futureFunc: NetUtils.getAlbumData,
         builder: (context, snapshot) {
-          var data = snapshot.albums as List;
+          var data = snapshot.albums;
+          print("=====================");
+          print(snapshot.albums);
+          print("=====================");
           return Container(
               height: ScreenUtil().setWidth(300),
               child: ListView.separated(
@@ -183,6 +186,7 @@ class _HomePrePageState extends State<DiscoverPage>
                 shrinkWrap: true,
                 scrollDirection: Axis.horizontal,
                 itemCount: data.length ?? 0,
+                // itemCount: 3,
               ));
         });
   }
@@ -227,7 +231,7 @@ class _HomePrePageState extends State<DiscoverPage>
             },
             shrinkWrap: true,
             physics: NeverScrollableScrollPhysics(),
-            itemCount: data.length,
+            itemCount: data.length ?? 0,
           );
         });
   }

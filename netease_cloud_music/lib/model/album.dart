@@ -1,3 +1,5 @@
+import 'package:netease_cloud_music/model/event_content.dart';
+
 class AlbumData {
   int _total;
   List<Albums> _albums;
@@ -11,19 +13,25 @@ class AlbumData {
 
   int get total => _total;
   set total(int total) => _total = total;
+  // ignore: unnecessary_getters_setters
   List<Albums> get albums => _albums;
   set albums(List<Albums> albums) => _albums = albums;
   int get code => _code;
   set code(int code) => _code = code;
 
   AlbumData.fromJson(Map<String, dynamic> json) {
-    _total = json['total'];
-    if (json['albums'] != null) {
-      _albums = new List<Albums>();
-      json['albums'].forEach((v) {
-        _albums.add(new Albums.fromJson(v));
-      });
+    var weekData = json['weekData'] as List;
+    _total = weekData.length;
+    for (var item in weekData) {
+      Albums alubum = new Albums.fromJson(item);
+      _albums.add(alubum);
     }
+    // if (json['albums'] != null) {
+    //   _albums = new List<Albums>();
+    //   json['albums'].forEach((v) {
+    //     _albums.add(new Albums.fromJson(v));
+    //   });
+    // }
     _code = json['code'];
   }
 
@@ -65,31 +73,30 @@ class Albums {
   String _picIdStr;
 
   Albums(
-      {
-        bool paid,
-        bool onSale,
-        int mark,
-        List<Artists> artists,
-        int copyrightId,
-        Artist artist,
-        int picId,
-        int publishTime,
-        String commentThreadId,
-        String briefDesc,
-        String picUrl,
-        String company,
-        String blurPicUrl,
-        int companyId,
-        int pic,
-        String tags,
-        int status,
-        String subType,
-        String description,
-        String name,
-        int id,
-        String type,
-        int size,
-        String picIdStr}) {
+      {bool paid,
+      bool onSale,
+      int mark,
+      List<Artists> artists,
+      int copyrightId,
+      Artist artist,
+      int picId,
+      int publishTime,
+      String commentThreadId,
+      String briefDesc,
+      String picUrl,
+      String company,
+      String blurPicUrl,
+      int companyId,
+      int pic,
+      String tags,
+      int status,
+      String subType,
+      String description,
+      String name,
+      int id,
+      String type,
+      int size,
+      String picIdStr}) {
     this._paid = paid;
     this._onSale = onSale;
     this._mark = mark;
@@ -167,7 +174,6 @@ class Albums {
   set picIdStr(String picIdStr) => _picIdStr = picIdStr;
 
   Albums.fromJson(Map<String, dynamic> json) {
-
     _paid = json['paid'];
     _onSale = json['onSale'];
     _mark = json['mark'];
@@ -179,7 +185,7 @@ class Albums {
     }
     _copyrightId = json['copyrightId'];
     _artist =
-    json['artist'] != null ? new Artist.fromJson(json['artist']) : null;
+        json['artist'] != null ? new Artist.fromJson(json['artist']) : null;
     _picId = json['picId'];
     _publishTime = json['publishTime'];
     _commentThreadId = json['commentThreadId'];
@@ -251,18 +257,18 @@ class Artists {
 
   Artists(
       {int img1v1Id,
-        int topicPerson,
-        int picId,
-        int albumSize,
-        int musicSize,
-        String briefDesc,
-        bool followed,
-        String img1v1Url,
-        String trans,
-        String picUrl,
-        String name,
-        int id,
-        String img1v1IdStr}) {
+      int topicPerson,
+      int picId,
+      int albumSize,
+      int musicSize,
+      String briefDesc,
+      bool followed,
+      String img1v1Url,
+      String trans,
+      String picUrl,
+      String name,
+      int id,
+      String img1v1IdStr}) {
     this._img1v1Id = img1v1Id;
     this._topicPerson = topicPerson;
     this._picId = picId;
@@ -358,19 +364,19 @@ class Artist {
 
   Artist(
       {int img1v1Id,
-        int topicPerson,
-        int picId,
-        int albumSize,
-        int musicSize,
-        String briefDesc,
-        bool followed,
-        String img1v1Url,
-        String trans,
-        String picUrl,
-        String name,
-        int id,
-        List<String> transNames,
-        String img1v1IdStr}) {
+      int topicPerson,
+      int picId,
+      int albumSize,
+      int musicSize,
+      String briefDesc,
+      bool followed,
+      String img1v1Url,
+      String trans,
+      String picUrl,
+      String name,
+      int id,
+      List<String> transNames,
+      String img1v1IdStr}) {
     this._img1v1Id = img1v1Id;
     this._topicPerson = topicPerson;
     this._picId = picId;
@@ -429,7 +435,8 @@ class Artist {
     _picUrl = json['picUrl'];
     _name = json['name'];
     _id = json['id'];
-    _transNames = json['transNames'] == null ? List() : json['transNames'].cast<String>();
+    _transNames =
+        json['transNames'] == null ? List() : json['transNames'].cast<String>();
     _img1v1IdStr = json['img1v1Id_str'];
   }
 
