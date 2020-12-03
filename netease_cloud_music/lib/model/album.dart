@@ -22,6 +22,7 @@ class AlbumData {
   AlbumData.fromJson(Map<String, dynamic> json) {
     var weekData = json['weekData'] as List;
     _total = weekData.length;
+
     for (var item in weekData) {
       Albums alubum = new Albums.fromJson(item);
       _albums.add(alubum);

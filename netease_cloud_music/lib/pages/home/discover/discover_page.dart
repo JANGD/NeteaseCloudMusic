@@ -163,7 +163,8 @@ class _HomePrePageState extends State<DiscoverPage>
     return CustomFutureBuilder<AlbumData>(
         futureFunc: NetUtils.getAlbumData,
         builder: (context, snapshot) {
-          var data = snapshot.albums;
+          // ignore: unnecessary_cast
+          var data = snapshot.albums as List<Albums>;
           print("=====================");
           print(snapshot.albums);
           print("=====================");

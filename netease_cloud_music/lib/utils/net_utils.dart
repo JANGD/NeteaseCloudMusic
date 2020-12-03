@@ -33,7 +33,7 @@ import 'custom_log_interceptor.dart';
 
 class NetUtils {
   static Dio _dio;
-  static final String baseUrl = 'http://127.0.0.1:3000';
+  static final String baseUrl = 'http://10.11.1.116:3000';
   static Future<List<InternetAddress>> _fm10s =
       InternetAddress.lookup("ws.acgvideo.com");
 
